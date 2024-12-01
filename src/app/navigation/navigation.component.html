@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="flex-1">
+  <div class="w-10/12 mx-auto">
+    <button
+      mat-icon-button
+      class="example-icon mr-4"
+      aria-label="Home"
+      (click)="onHomeIconClicked()"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+    <span> Event manager </span>
+  </div>
+</mat-toolbar>
+<div class="w-10/12 mx-auto mt-4">
+  <mat-tab-group animationDuration="500ms">
+    <mat-tab label="Events" />
+    <mat-tab label="Locations" />
+  </mat-tab-group>
+</div>
