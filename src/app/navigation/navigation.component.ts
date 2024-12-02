@@ -18,6 +18,16 @@ export class NavigationComponent {
     this.router.navigateByUrl('create');
   }
   onHomeIconClicked() {
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('');
+  }
+  onLocationsClicked() {
+    this.router.navigateByUrl('locations');
+  }
+  onTabChanged(event: any): void {
+    if (event.index === 0) {
+      this.onHomeIconClicked();
+    } else if (event.index === 1) {
+      this.onLocationsClicked();
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './AppFeat/home/home.component';
+import { HomeComponent } from './Event/home/home.component';
+import { LocationsComponent } from './Location/home/home.component';
 
 export const routes: Routes = [
   {
@@ -7,7 +8,7 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'locations',
+    component: LocationsComponent,
   },
 ];

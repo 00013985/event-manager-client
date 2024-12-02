@@ -3,35 +3,29 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
-import { IEvent } from '../../IEvent';
-import { APIService } from '../../api.service';
+import { APIService } from '../../api/location-api.service';
+import { ILocation } from '../../ILocation';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatToolbarModule],
+  imports: [MatTableModule, MatButtonModule, MatToolbarModule, MatIconModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
+export class LocationsComponent {
   ApiService = inject(APIService);
   router = inject(Router);
-  items: IEvent[] = [];
+  locations: ILocation[] = [];
 
   ngOnInit() {
     this.ApiService.getAll().subscribe((result) => {
-      this.items = result;
+      this.locations = result;
     });
   }
 
-  displayedColumns: string[] = [
-    'ID',
-    'Title',
-    'Description',
-    'DateTime',
-    'Location',
-    'Actions',
-  ];
+  displayedColumns: string[] = ['ID', 'Name', 'Address', 'Actions'];
 
   CreateClicked() {
     this.router.navigateByUrl('create');
