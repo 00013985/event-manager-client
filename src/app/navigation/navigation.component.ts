@@ -14,15 +14,31 @@ import { MatTabsModule } from '@angular/material/tabs';
 })
 export class NavigationComponent {
   router = inject(Router);
+  selectedIndex: number = 0;
+
+  ngOnInit(): void {
+    this.router.events.subscribe(() => {
+      const currentUrl = this.router.url;
+      if (currentUrl.includes('events') || currentUrl === '/') {
+        this.selectedIndex = 0;
+      } else if (currentUrl.includes('locations')) {
+        this.selectedIndex = 1;
+      }
+    });
+  }
+
   CreateClicked() {
     this.router.navigateByUrl('create');
   }
+
   onHomeIconClicked() {
     this.router.navigateByUrl('');
   }
+
   onLocationsClicked() {
     this.router.navigateByUrl('locations');
   }
+
   onTabChanged(event: any): void {
     if (event.index === 0) {
       this.onHomeIconClicked();

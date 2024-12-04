@@ -4,6 +4,6 @@ export interface IEvent {
   id: number;
   title: string;
   description: string;
-  categoryId: number;
+  locationId: number;
   location: ILocation;
 }

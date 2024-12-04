@@ -4,7 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { IEvent } from '../../IEvent';
-import { APIService } from '../../api/event-api.service';
+import { EventAPIService } from '../../api/event-api.service';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -12,16 +12,15 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatTableModule, MatButtonModule, MatToolbarModule, MatIconModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
 })
-export class HomeComponent {
-  ApiService = inject(APIService);
+export class EventsComponent {
+  EventAPIService = inject(EventAPIService);
   router = inject(Router);
-  items: IEvent[] = [];
+  events: IEvent[] = [];
 
   ngOnInit() {
-    this.ApiService.getAll().subscribe((result) => {
-      this.items = result;
+    this.EventAPIService.getAll().subscribe((result) => {
+      this.events = result;
     });
   }
 
@@ -29,25 +28,23 @@ export class HomeComponent {
     'ID',
     'Title',
     'Description',
-    'DateTime',
     'Location',
     'Actions',
   ];
 
   CreateClicked() {
-    this.router.navigateByUrl('create');
+    this.router.navigateByUrl('events/create');
   }
 
   EditClicked(itemID: number) {
-    console.log(itemID, 'From Edit');
-    this.router.navigateByUrl('/edit/' + itemID);
+    this.router.navigateByUrl(`events/edit/${itemID}`);
   }
+
   DetailsClicked(itemID: number) {
-    console.log(itemID, 'From Details');
-    this.router.navigateByUrl('/details/' + itemID);
+    this.router.navigateByUrl(`events/details/${itemID}`);
   }
+
   DeleteClicked(itemID: number) {
-    console.log(itemID, 'From Delete');
-    this.router.navigateByUrl('/delete/' + itemID);
+    this.router.navigateByUrl(`events/delete/${itemID}`);
   }
 }

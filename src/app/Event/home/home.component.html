@@ -8,35 +8,33 @@
       </button>
     </div>
   </mat-toolbar-row>
-  <table mat-table [dataSource]="items" class="mat-elevation-z8">
+  <table mat-table [dataSource]="events" class="mat-elevation-z8">
     <ng-container matColumnDef="ID">
       <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let item">{{ item.id }}</td>
+      <td mat-cell *matCellDef="let event">{{ event.id }}</td>
     </ng-container>
     <ng-container matColumnDef="Title">
       <th mat-header-cell *matHeaderCellDef>Title</th>
-      <td mat-cell *matCellDef="let item">{{ item.title }}</td>
+      <td mat-cell *matCellDef="let event">{{ event.title }}</td>
     </ng-container>
     <ng-container matColumnDef="Description">
       <th mat-header-cell *matHeaderCellDef>Description</th>
-      <td mat-cell *matCellDef="let item">{{ item.description }}</td>
-    </ng-container>
-    <ng-container matColumnDef="DateTime">
-      <th mat-header-cell *matHeaderCellDef>Date and Time</th>
-      <td mat-cell *matCellDef="let item">{{ item.category.name }}</td>
+      <td mat-cell *matCellDef="let event">{{ event.description }}</td>
     </ng-container>
     <ng-container matColumnDef="Location">
       <th mat-header-cell *matHeaderCellDef>Event location</th>
-      <td mat-cell *matCellDef="let item">{{ item.category.name }}</td>
+      <td mat-cell *matCellDef="let event">
+        {{ event.location.name }}: {{ event.location.address }}
+      </td>
     </ng-container>
     <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
-      <td mat-cell *matCellDef="let item">
+      <td mat-cell *matCellDef="let event">
         <div class="flex justify-around">
           <button
             mat-raised-button
             color="primary"
-            (click)="EditClicked(item.id)"
+            (click)="EditClicked(event.id)"
           >
             <mat-icon>edit</mat-icon>
             Edit
@@ -44,7 +42,7 @@
           <button
             mat-raised-button
             color="accent"
-            (click)="DetailsClicked(item.id)"
+            (click)="DetailsClicked(event.id)"
           >
             <mat-icon>details</mat-icon>
             Details
@@ -52,7 +50,7 @@
           <button
             mat-raised-button
             color="warn"
-            (click)="DeleteClicked(item.id)"
+            (click)="DeleteClicked(event.id)"
           >
             <mat-icon>delete</mat-icon>
             Delete

@@ -13,6 +13,7 @@
 </mat-toolbar>
 <div class="w-10/12 mx-auto mt-4">
   <mat-tab-group
+    [selectedIndex]="selectedIndex"
     animationDuration="500ms"
     (selectedTabChange)="onTabChanged($event)"
   >

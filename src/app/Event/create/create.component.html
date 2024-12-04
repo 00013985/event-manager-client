@@ -1,0 +1,43 @@
+<div class="p-8 mt-8 flex justify-center">
+  <form class="shadow border w-4/12 p-4">
+    <div class="flex">
+      <mat-form-field class="w-full">
+        <mat-label>Title </mat-label>
+        <input
+          matInput
+          name="title"
+          type="text"
+          [(ngModel)]="createEvent.title"
+        />
+      </mat-form-field>
+    </div>
+    <div class="flex">
+      <mat-form-field class="w-full">
+        <mat-label>Description </mat-label>
+        <input
+          matInput
+          name="description"
+          type="text"
+          [(ngModel)]="createEvent.description"
+        />
+      </mat-form-field>
+    </div>
+    <div class="flex">
+      <mat-form-field class="w-full">
+        <mat-label>Choose Category</mat-label>
+        <mat-select [(ngModel)]="choosenLocationId" name="Location">
+          @for(location of locations; track location) {
+          <mat-option [value]="location.id"
+            >{{ location.name }}: {{ location.address }}</mat-option
+          >
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="flex justify-center">
+      <button mat-raised-button color="primary" (click)="create()">
+        Create
+      </button>
+    </div>
+  </form>
+</div>
